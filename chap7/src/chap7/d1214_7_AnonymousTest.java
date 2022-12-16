@@ -13,6 +13,7 @@ public class d1214_7_AnonymousTest {
 	public static void main(String[] args) {
 		//Ano a = new Ano();
 		
+		//I1 인터페이스 상속 무명 클래스 정의 + 객체 생성 문장 
 		I1 i1 = new I1() {
 			public void m1() {
 				System.out.println("m1 호출");
