@@ -59,7 +59,7 @@ public class d1214_1_interfaceTest {
 //		4. Worker 인터페이스 포함 - StudentWorker
 //		5. work() / lunch()
 		
-		//w.study(); // 안됨. Study 인터페이스에 있기 때문에
+		//w.study(); // 안됨. student 인터페이스에 있기 때문에
 		w.lunch();
 		w.work();
 		//w.team(); //안됨 studentWorker 클래스에 있는 메소드라서

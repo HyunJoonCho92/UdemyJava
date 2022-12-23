@@ -6,7 +6,7 @@ public class d1207_6_ScoreTest {
 		String name = "홍길동";
 		
 		// 1 ~ 199 사이 난수 생성
-		double d = Math.random() * 100; //0~10사이 난수만들기
+		double d = Math.random() * 100; //0~100사이 난수만들기
 		int kor = 100;
 		int eng = 50;
 		int mat = 75;

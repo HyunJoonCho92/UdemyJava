@@ -2,4 +2,4 @@
 
 
 
-String[] words=url.split("\\.|:|/");
+// String[] words=url.scplit("\\.|:|/");

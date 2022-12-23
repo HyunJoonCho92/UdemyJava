@@ -43,7 +43,7 @@ public class d1215_1_ThrowsTest {
 //			System.out.println("main에서 받아서 처리합니다.");
 //		}
 		
-	
+		
 		t.m2();
 		
 		try {

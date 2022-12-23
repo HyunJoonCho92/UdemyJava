@@ -21,7 +21,7 @@ public class d1214_9_CheckedTest {
 		//uncheckedexception종류
 		//class RuntimeException extends Exception
 		//class ArithmeticException extends RuntimeException
-		System.out.println(10/0);
+		System.out.println(10/0); //이건 오류 뜸
 	}
 
 }

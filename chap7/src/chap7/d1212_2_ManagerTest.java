@@ -64,6 +64,8 @@ public class d1212_2_ManagerTest {
 		
 		Manager m = new Manager(100,"홍길동","영업부", "영업관리");
 		m.calcSalary(50000); //상속
+		m.test();
+		System.out.println();
 		m.printAll();
 		
 //		System.out.printf("사번 = %d\n이름 = %s\n부서명 = %s\n관리직종 = %s \n", m.id, m.name, m.dept, m.job);
