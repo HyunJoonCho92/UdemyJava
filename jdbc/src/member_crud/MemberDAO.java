@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 public class MemberDAO {
 	
@@ -65,7 +67,6 @@ public class MemberDAO {
 	
 		return count;
 	} //insertMember end
-	
 	
 	int getTotalMember(){
 		// dto 전달 내용을 member 테이블 입력
@@ -173,6 +174,7 @@ public class MemberDAO {
 	} //getMemberList end
 	
 	
+	//
 	MemberDTO getMember(String id, String pw){
 		
 		MemberDTO result = new MemberDTO();
@@ -231,6 +233,98 @@ public class MemberDAO {
 	
 		return result;
 	} //getMember end
+	
+	void updateMember(HashMap<String, String> updateMap){
+		
+		Connection con = null;
+		PreparedStatement pt = null;
+		
+		try {
+			//0. jdbc driver 호출 - jdk 비포함
+			Class.forName(ConnectionInform.DRIVER_CLASS);
+			
+			// 1. db 연결
+			con = DriverManager.getConnection
+					(ConnectionInform.JDBC_URL, ConnectionInform.USERNAME, ConnectionInform.PASSWORD);
+			
+			StringBuffer sql = new StringBuffer(); //16문자 버퍼 + ...
+			
+			sql.append("UPDATE member SET ");
+			//확인용
+			Set<String> keys = updateMap.keySet();
+			for(String k : keys) {
+				if(!k.equals("id")) {
+					sql.append(k + "= '" + updateMap.get(k) + "', ");
+				}
+			}
+			sql.deleteCharAt(sql.lastIndexOf((",")));
+			sql.append("WHERE id = ?");
+			
+			System.out.println("연결 성공");
+			System.out.println(sql);// 확인용
+			
+			pt = con.prepareStatement(sql.toString());
+			pt.setString(1,updateMap.get("id"));
+			pt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pt.close();
+				con.close();
+			}catch(Exception e) {}
+		}
+
+	} //updateMember end
+	
+	void deleteMember(String id){
+		Connection con = null;
+		PreparedStatement pt = null;
+		//int count = 0;
+		
+		try {
+			//0. jdbc driver 호출 - jdk 비포함
+			Class.forName(ConnectionInform.DRIVER_CLASS);
+			
+			// 1. db 연결
+			con = DriverManager.getConnection
+					(ConnectionInform.JDBC_URL, ConnectionInform.USERNAME, ConnectionInform.PASSWORD);
+			
+			con.setAutoCommit(false); //수동 트랜잭션 설정 변경
+			
+			System.out.println("연결 성공");
+			System.out.println(con.getAutoCommit());
+			
+			String sql1 = "INSERT INTO deletedmember SELECT * FROM member WHERE id = ?";
+			String sql2 = "DELETE FROM member WHERE id =?";
+			
+			pt = con.prepareStatement(sql1);
+			pt.setString(1, id);
+			int insertcount = pt.executeUpdate();
+			
+			pt = con.prepareStatement(sql2);
+			pt.setString(1, id);
+			int deletecount = pt.executeUpdate();
+			
+			con.commit();
+			
+			//확인용
+//			System.out.println(rs.next());
+		
+			
+		}catch(Exception e) {
+			System.out.println("회원 탈퇴 처리 중 문제 발생 - 취소");
+			try {
+				con.rollback();
+			}catch(Exception e2) {}
+//			 e.printStackTrace();
+		}finally {
+			try {
+				pt.close();
+				con.close();
+			}catch(Exception e) {}
+		}
+	} //deleteMember end
 	
 	
 	

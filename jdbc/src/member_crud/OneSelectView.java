@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class OneSelectView implements View {
+	MemberDTO dto;
+	
+	public MemberDTO getDto() {
+		return dto;
+	}
 
 	@Override
 	public void input() {
@@ -16,7 +21,7 @@ public class OneSelectView implements View {
 		
 		
 		MemberDAO dao = new MemberDAO();
-		MemberDTO dto = dao.getMember(id, pw);
+		this.dto = dao.getMember(id, pw);
 
 		//id 일치하면 pw 일치하면 - 정보 저장 리턴
 		//id 일치하면 pw 불일치하면 - 4번 암호 맞지 않습니다.(id만 저장)

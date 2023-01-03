@@ -28,6 +28,12 @@ public class MemberMain {
 //				MemberInsertView input 호출
 				new MemberInsertView().input();
 			}
+			else if(menu == 2) {
+				new MemberUpdateView().input();
+			}
+			else if(menu == 3) {
+				new MemberDeleteView().input();
+			}
 			else if(menu == 4) {
 				new OneSelectView().input();
 			}
@@ -37,6 +43,5 @@ public class MemberMain {
 				
 			}
 		}
-		
 	}
 }

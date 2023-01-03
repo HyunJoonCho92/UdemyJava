@@ -18,12 +18,11 @@ class Employee{
 		this.salary = salary;
 	}
 	
-	
-	
+
 	Employee(int id, String name){
 		this(id, name, "직급미정", "배치이전", -1);
 		System.out.println("Employee 생성자호출1");
-		this.id = id;
+//		this.id = id;
 //		this.name = name;
 //		this.title = "직급미정";
 //		this.dept = "배치이전";

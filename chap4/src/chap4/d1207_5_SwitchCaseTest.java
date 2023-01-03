@@ -30,7 +30,5 @@ public class d1207_5_SwitchCaseTest {
 		default:
 			System.out.println("검색 불가합니다.");
 		}
-
 	}
-
 }

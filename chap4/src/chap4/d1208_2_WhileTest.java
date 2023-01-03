@@ -15,7 +15,5 @@ public class d1208_2_WhileTest {
 			System.out.println(test);
 			i++;
 		}
-
 	}
-
 }
